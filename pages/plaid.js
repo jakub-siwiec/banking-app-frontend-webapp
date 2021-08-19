@@ -14,14 +14,14 @@ function Plaid() {
         setLinkToken(data.link_token)
     };
     useEffect(() => {
-        generateToken();
+        generateToken()
     }, []);
 
-    return (
+    return linkToken != null ? (
         <div>
             <LinkPlaid linkToken={linkToken} />
         </div>
-    )
+    ) : <>No link token</>
 }
 
 export default Plaid

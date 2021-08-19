@@ -4,16 +4,19 @@ import { usePlaidLink } from 'react-plaid-link';
 
 
 const LinkPlaid = ({ linkToken }) => {
-    const onSuccess = useCallback((public_token, metadata) => {
-        // send public_token to server
-        const response = fetch('/api/set_access_token', {
+    const onSuccess = useCallback( async (publicToken, metadata) => {
+        console.log(publicToken)
+        console.log(metadata)
+        const response = await fetch('http://localhost:8002/access-token', {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ public_token }),
+            body: JSON.stringify({ publicToken: publicToken })
         })
-        // Handle response ...
+        const data = await response.json()
+        console.log(data)
     }, [])
 
     const config = {
