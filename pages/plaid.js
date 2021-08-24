@@ -6,16 +6,21 @@ function Plaid() {
     const [linkToken, setLinkToken] = useState(null)
 
     const generateToken = async () => {
-        const response = await fetch('http://localhost:8002', {
-            method: 'GET',
-        })
-        const data = await response.json()
-        console.log(data)
-        setLinkToken(data.link_token)
-    };
+        try {
+            const response = await fetch('/api/link-token', {
+                method: 'GET',
+            })
+            const data = await response.json()
+            setLinkToken(data.link_token)
+        } catch (error) {
+            setLinkToken(null)
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         generateToken()
-    }, []);
+    }, [])
 
     return linkToken != null ? (
         <div>

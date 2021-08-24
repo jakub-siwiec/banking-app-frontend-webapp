@@ -7,7 +7,7 @@ const LinkPlaid = ({ linkToken }) => {
     const onSuccess = useCallback( async (publicToken, metadata) => {
         console.log(publicToken)
         console.log(metadata)
-        const response = await fetch('http://localhost:8002/access-token', {
+        const response = await fetch('api/access-token', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

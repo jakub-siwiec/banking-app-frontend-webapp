@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
+import { getCookies } from '../utils/getCookies'
 
 const Navbar = () => {
 
@@ -11,6 +13,15 @@ const Navbar = () => {
     const isActiveClass = burgerActive ? "is-active" : ""
     const navbarBurgerClasses = `navbar-burger ${isActiveClass}`
     const navbarMenuClasses = `navbar-menu ${isActiveClass}`
+
+    
+
+    useEffect(() => {
+        const cookies = getCookies()
+        console.log(cookies)
+        document.cookie = "test=testCookie;"
+    }, [])
+
 
     return (
         <>
