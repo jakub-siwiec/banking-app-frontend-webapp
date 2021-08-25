@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { usePlaidLink } from 'react-plaid-link';
+import { usePlaidLink } from 'react-plaid-link'
 
 
 const LinkPlaid = ({ linkToken }) => {
@@ -15,7 +15,7 @@ const LinkPlaid = ({ linkToken }) => {
             },
             body: JSON.stringify({ publicToken: publicToken })
         })
-        const data = await response.json()
+        const data = await response
         console.log(data)
     }, [])
 
