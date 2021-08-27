@@ -1,4 +1,4 @@
-import cookie from 'cookie'
+import { setCookie } from 'nookies'
 
 export default async function handler(req, res) {
     const response = await fetch('http://localhost:8002/access-token', {
@@ -10,11 +10,6 @@ export default async function handler(req, res) {
         body: JSON.stringify({ publicToken: req.body.publicToken })
     })
     const data = await response.json()
-    const accessTokenCookie = cookie.serialize('accesstoken', data.access_token)
-    const cookieOptions = {
-        httpOnly: true,
-        maxAge: 60 * 60 * 24 * 7 // 1 week
-    }
-    res.setHeader('Set-Cookie', accessTokenCookie, cookieOptions)
-    res.end(res.getHeader('Set-Cookie'))
+    setCookie( {res}, 'accesstoken', data.access_token, { httpOnly: true })
+    res.status(200).json({ message: 'success' })
 }  
