@@ -1,6 +1,8 @@
 import Navbar from '../components/Navbar'
 
-const test = ({ msg }) => {
+import Accounts from '../components/Accounts'
+
+const test = () => {
     return (
         <>
             <Navbar />
@@ -10,8 +12,9 @@ const test = ({ msg }) => {
                         <div className="level">
                             <div className="level-item">
                                 <a className="button is-primary">
-                                    {msg}
+                                    msg
                                 </a>
+                                <Accounts />
                             </div>
                         </div>
                     </div>

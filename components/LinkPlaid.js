@@ -15,8 +15,7 @@ const LinkPlaid = ({ linkToken }) => {
             },
             body: JSON.stringify({ publicToken: publicToken })
         })
-        const data = await response.json()
-        console.log(data)
+        await response.json()
     }, [])
 
     const config = {
