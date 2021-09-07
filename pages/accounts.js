@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar'
 
 import Accounts from '../components/Accounts'
 
-const test = () => {
+const accounts = () => {
 
     return (
         <>
@@ -14,4 +14,4 @@ const test = () => {
     )
 }
 
-export default test
+export default accounts
