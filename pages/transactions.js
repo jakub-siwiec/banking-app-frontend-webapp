@@ -6,17 +6,15 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const transactions = () => {
 
-    const { data, error } = useSWR('/api/get-transactions-all', fetcher)
+    const { data, error } = useSWR('/api/get-transactions-all?lala=jdsjd', fetcher)
 
     useEffect(() => {
-        console.log(data)       
+        console.log(data)
     }, [data])
 
 
     return (
-        <div>
-            
-        </div>
+        <></>
     )
 }
 

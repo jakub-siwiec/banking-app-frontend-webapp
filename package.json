@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.3",
+    "bulma-calendar": "^6.1.12",
     "next": "11.1.0",
     "nookies": "^2.5.2",
     "react": "17.0.2",

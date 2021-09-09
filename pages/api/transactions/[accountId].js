@@ -3,10 +3,12 @@ import { parseCookies } from 'nookies'
 export default async function handler(req, res) {
     const cookies = parseCookies({req})
 
+    const { accountId } = req.query
+
     console.log(req.query)
 
     if (cookies.accesstoken) {
-        const response = await fetch('http://localhost:8002/transactions', {
+        const response = await fetch(`http://localhost:8002/transactions/${accountId}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + cookies.accesstoken,
