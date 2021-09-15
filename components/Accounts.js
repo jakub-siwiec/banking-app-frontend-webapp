@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 
-import Link from 'next/link'
-
 import useSWR from 'swr'
 
 import Account from './Account'
