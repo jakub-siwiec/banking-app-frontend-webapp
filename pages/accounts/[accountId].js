@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 
-import TransactionsTable from "../../components/TransactionsTable"
+import TransactionsTable from '../../components/TransactionsTable'
+
+import BalanceBox from '../../components/BalanceBox'
 
 
 const accountsId = () => {
@@ -10,7 +12,8 @@ const accountsId = () => {
 
     return (
         <>
-            <TransactionsTable accountId={accountId}/>
+            <BalanceBox accountId={accountId} />
+            <TransactionsTable accountId={accountId} />
         </>
     )
 }
