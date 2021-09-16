@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import useSWR from 'swr'
 
 import TransactionRecord from './TransactionRecord'
@@ -9,8 +11,14 @@ const TransactionsTable = ({accountId}) => {
 
     const { data: transactionList, error } = useSWR(`/api/transactions/${accountId}`, fetcher)
 
+    useEffect(() => {
+        console.log(transactionList)       
+    }, [transactionList])
+
+
     if (error) return <div>failed to load</div>
     if (!transactionList) return <div>loading...</div>
+    if (!Array.isArray(transactionList)) return <div>try again later</div>
 
 
     return (

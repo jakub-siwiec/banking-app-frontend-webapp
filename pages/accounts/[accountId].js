@@ -12,8 +12,16 @@ const accountsId = () => {
 
     return (
         <>
-            <BalanceBox accountId={accountId} />
-            <TransactionsTable accountId={accountId} />
+            <div className="level">
+                <div className="level-item">
+                    <BalanceBox accountId={accountId} />
+                </div>
+            </div>
+            <div className="level">
+                <div className="level-item">
+                    <TransactionsTable accountId={accountId} />
+                </div>
+            </div>
         </>
     )
 }
