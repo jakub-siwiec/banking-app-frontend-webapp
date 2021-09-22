@@ -11,7 +11,6 @@ const BalanceBoxContent = ({ balanceAccounts }) => {
                     <p className="title is-1 has-text-centered">{currentValue(balances)}</p>
                 </div>
             </div>
-
             <div className="tile is-vertical is-parent">
                 <div className="tile is-child">
                     <p className="title">{name}</p>
@@ -20,7 +19,7 @@ const BalanceBoxContent = ({ balanceAccounts }) => {
                     <p className="subtitle">{official_name}</p>
                 </div>
                 <div className="tile is-child">
-                    {subtype}, {type}
+                    <div className="has-text-grey-lighter">#{type} #{subtype}</div>
                 </div>
             </div>
         </div>

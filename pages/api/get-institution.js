@@ -4,6 +4,6 @@ export default async function handler(req, res) {
     await cookiesRequest(
         req,
         res,
-        'http://localhost:8002/transactions'
+        'http://localhost:8002/institution'
     )
 }  

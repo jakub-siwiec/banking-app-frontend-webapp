@@ -26,7 +26,7 @@ const LinkPlaid = ({ linkToken }) => {
     const { open, ready } = usePlaidLink(config)
 
     return (
-        <button onClick={() => open()} disabled={!ready}>
+        <button className="button is-link" onClick={() => open()} disabled={!ready}>
             Link account
         </button>
     )

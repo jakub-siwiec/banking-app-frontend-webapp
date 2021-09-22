@@ -17,6 +17,7 @@ const BalanceBox = ({ accountId }) => {
 
     if (error) return <div>failed to load</div>
     if (!balanceInfo) return <div>loading...</div>
+    if (typeof(balanceInfo.name) !== 'undefined' && balanceInfo.name === 'PlaidError') return <div>{balanceInfo.error_code}: {balanceInfo.error_message}</div>
 
 
     return (

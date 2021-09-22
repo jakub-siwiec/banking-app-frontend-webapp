@@ -1,9 +1,21 @@
 import '../styles/globals.scss'
 
-function MyApp({ Component, pageProps }) {
+import { withRouter } from 'next/router'
+
+import swrRequest from '../libs/swrRequest'
+
+import LoaderSite from '../components/LoaderSite'
+
+function MyApp({ Component, pageProps, router }) {
+
+  if (router.pathname !== '/') {
+    const { data, error, loading } = swrRequest('/api/auth')
+    if (loading) return <LoaderSite />
+  }
+
   return (
-      <Component {...pageProps} />
+    <Component {...pageProps} />
   )
 }
 
-export default MyApp
+export default withRouter(MyApp)
