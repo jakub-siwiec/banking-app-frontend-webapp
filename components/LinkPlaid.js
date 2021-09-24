@@ -5,8 +5,6 @@ import { usePlaidLink } from 'react-plaid-link'
 
 const LinkPlaid = ({ linkToken }) => {
     const onSuccess = useCallback( async (publicToken, metadata) => {
-        console.log(publicToken)
-        console.log(metadata)
         const response = await fetch('api/access-token', {
             method: 'POST',
             headers: {
