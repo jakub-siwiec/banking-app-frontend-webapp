@@ -1,4 +1,4 @@
-import FullSiteCentered from './FullSiteCentered'
+import FullSiteCentered from '../FullSiteCentered'
 import Loader from './Loader'
 
 const LoaderSite = () => {

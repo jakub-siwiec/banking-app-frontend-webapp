@@ -6,7 +6,7 @@ import { withRouter } from 'next/router'
 
 import swrRequest from '../libs/swrRequest'
 
-import LoaderSite from '../components/LoaderSite'
+import LoaderSite from '../components/loader/LoaderSite'
 
 function MyApp({ Component, pageProps, router }) {
 

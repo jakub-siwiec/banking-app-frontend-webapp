@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar'
 
-import Accounts from '../components/Accounts'
+import Accounts from '../components/accounts/Accounts'
 
 const accounts = () => {
 

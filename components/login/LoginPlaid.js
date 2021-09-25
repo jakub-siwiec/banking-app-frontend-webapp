@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import FullSiteCentered from './FullSiteCentered'
+import FullSiteCentered from '../FullSiteCentered'
 import LinkPlaid from './LinkPlaid'
-import Loader from './Loader'
+import Loader from '../loader/Loader'
 
 import useSWR from 'swr'
 

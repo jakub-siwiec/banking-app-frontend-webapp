@@ -1,4 +1,4 @@
-import BankBox from '../components/BankBox'
+import BankBox from '../components/login/BankBox'
 
 function Home() {
 
