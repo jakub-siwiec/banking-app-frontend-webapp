@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import FullSiteCentered from './FullSiteCentered'
 import LinkPlaid from './LinkPlaid'
+import Loader from './Loader'
 
 import useSWR from 'swr'
 
@@ -35,7 +36,7 @@ function LoginPlaid() {
 
     return (
         <FullSiteCentered>
-            {linkToken != null ? <LinkPlaid linkToken={linkToken} /> : <>No link token</>}
+            {linkToken != null ? <LinkPlaid linkToken={linkToken} /> : <Loader/>}
         </FullSiteCentered>
     )
 }
