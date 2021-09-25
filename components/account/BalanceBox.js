@@ -1,19 +1,12 @@
-import { useEffect } from 'react'
-
-import useSWR from 'swr'
+import swrRequest from '../../libs/swrRequest'
 
 import BalanceBoxContent from './BalanceBoxContent'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 
 const BalanceBox = ({ accountId }) => {
 
-    const { data: balanceInfo, error } = useSWR(`/api/balance/${accountId}`, fetcher)
-
-    useEffect(() => {
-        console.log(balanceInfo)       
-    }, [balanceInfo])
+    const { data: balanceInfo, error } = swrRequest(`/api/balance/${accountId}`)
 
     if (error) return <div>failed to load</div>
     if (!balanceInfo) return <div>loading...</div>

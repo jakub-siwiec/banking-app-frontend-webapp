@@ -1,22 +1,10 @@
-import { useEffect } from 'react'
-
-import useSWR from 'swr'
+import swrRequest from '../../libs/swrRequest'
 
 import Account from './Account'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
-
 const Accounts = () => {
 
-    const config = {
-        credentials: 'include'
-    }
-
-    const { data, error } = useSWR('/api/get-accounts', fetcher)
-
-    useEffect(() => {
-        console.log(data)       
-    }, [data])
+    const { data, error } = swrRequest('/api/get-accounts')
 
 
     if (error) return <div>failed to load</div>

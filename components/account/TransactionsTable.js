@@ -1,13 +1,11 @@
-import useSWR from 'swr'
+import swrRequest from '../../libs/swrRequest'
 
 import TransactionRecord from './TransactionRecord'
 
 
 const TransactionsTable = ({accountId}) => {
 
-    const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-    const { data: transactionList, error } = useSWR(`/api/transactions/${accountId}`, fetcher)
+    const { data: transactionList, error } = swrRequest(`/api/transactions/${accountId}`)
 
 
     if (error) return <div>failed to load</div>
