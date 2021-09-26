@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 
+import Navbar from '../../components/Navbar'
+
 import TransactionsTable from '../../components/account/TransactionsTable'
 
 import BalanceBox from '../../components/account/BalanceBox'
@@ -12,6 +14,7 @@ const accountsId = () => {
 
     return (
         <>
+            <Navbar />
             <div className="level">
                 <div className="level-item">
                     <BalanceBox accountId={accountId} />

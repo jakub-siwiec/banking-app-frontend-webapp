@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+import Image from 'next/image'
+import Link from 'next/link'
+
+
 const Navbar = () => {
 
     const [burgerActive, setBurger] = useState(false)
@@ -18,7 +22,8 @@ const Navbar = () => {
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="https://bulma.io">
-                        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+                        {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" /> */}
+                        <Image src="/logo.png" width="60" height="60" />
                     </a>
                     <a onClick={burgerToggle} role="button" className={navbarBurgerClasses} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         <span aria-hidden="true">{burgerActive}</span>
@@ -28,35 +33,16 @@ const Navbar = () => {
                 </div>
                 <div id="navbarBasicExample" className={navbarMenuClasses}>
                     <div className="navbar-start">
-                        <a className="navbar-item">
-                        Home
-                        </a>
-
-                        <a className="navbar-item">
-                        Documentation
-                        </a>
-
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link">
-                                More
+                        <Link href="/">
+                            <a className="navbar-item">
+                                Home
                             </a>
-
-                            <div className="navbar-dropdown">
-                                <a className="navbar-item">
-                                    About
-                                </a>
-                                <a className="navbar-item">
-                                    Jobs
-                                </a>
-                                <a className="navbar-item">
-                                    Contact
-                                </a>
-                                <hr className="navbar-divider" />
-                                <a className="navbar-item">
-                                    Report an issue
-                                </a>
-                            </div>
-                        </div>
+                        </Link>
+                        <Link href="/accounts">
+                            <a className="navbar-item">
+                                Accounts
+                            </a>
+                        </Link>
                     </div>
                 </div>    
             </nav>
