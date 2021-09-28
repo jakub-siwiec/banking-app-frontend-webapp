@@ -5,13 +5,13 @@ import LoginPlaid from './LoginPlaid'
 
 const LoginPageButton = () => {
 
-    const { data: institution, error } = swrRequest('/api/get-institution')
+    const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/get-institution')
 
-    const nameExists = institution && institution.institution
+    const nameExists = dataInstitution && dataInstitution.institution
 
     return nameExists ? (
         <BankBox 
-            institution={institution}
+            institution={dataInstitution}
         />
     ) : <LoginPlaid />
 }

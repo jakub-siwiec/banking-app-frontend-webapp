@@ -1,18 +1,19 @@
 import swrRequest from '../../libs/swrRequest'
 
 import Account from './Account'
+import LoaderSite from '../loader/LoaderSite'
 
 const Accounts = () => {
 
-    const { data, error } = swrRequest('/api/get-accounts')
+    const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/get-accounts')
 
 
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
+    if (errorAccounts) return <div>failed to load</div>
+    if (loadingAccounts) return <LoaderSite />
 
     return (
         <div className="columns is-multiline is-variable">
-                {data.accounts && data.accounts.map(account => 
+                {dataAccounts.accounts && dataAccounts.accounts.map(account => 
                     <Account 
                         key={account.account_id}
                         id={account.account_id} 

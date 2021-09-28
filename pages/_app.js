@@ -14,16 +14,16 @@ import LoaderSite from '../components/loader/LoaderSite'
 
 function MyApp({ Component, pageProps, router }) {
 
-  const { data, error, loading } = swrRequest('/api/auth')
+  const { data: dataAuth, error: errorAuth, loading: loadingAuth } = swrRequest('/api/auth')
 
   useEffect(() => {
     if (router.isReady && router.pathname !== '/') {
-      if (error) router.push('/')
-      if (data) console.log(data)
+      if (errorAuth) router.push('/')
+      if (dataAuth) console.log(dataAuth)
     }
-  }, [data, error])
+  }, [dataAuth, errorAuth])
 
-  if (loading) return <LoaderSite />
+  if (loadingAuth) return <LoaderSite />
 
   return (
     <Component {...pageProps} />

@@ -3,14 +3,9 @@ import { useEffect, useState } from 'react'
 import LinkPlaid from './LinkPlaid'
 import Loader from '../loader/Loader'
 
-import swrRequest from '../../libs/swrRequest'
-
 
 function LoginPlaid() {
     const [linkToken, setLinkToken] = useState(null)
-
-    const { data: institution, error } = swrRequest('/api/get-institution')
-
 
     const generateToken = async () => {
         try {
@@ -29,7 +24,7 @@ function LoginPlaid() {
         if (linkToken === null) {
             generateToken()
         }
-    }, [institution])
+    }, [])
 
     return (
         linkToken != null ? <LinkPlaid linkToken={linkToken} /> : <Loader/>

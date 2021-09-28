@@ -1,16 +1,17 @@
 import swrRequest from '../../libs/swrRequest'
 
 import TransactionRecord from './TransactionRecord'
+import Loader from '../loader/Loader'
 
 
 const TransactionsTable = ({accountId}) => {
 
-    const { data: transactionList, error } = swrRequest(`/api/transactions/${accountId}`)
+    const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
 
 
-    if (error) return <div>failed to load</div>
-    if (!transactionList) return <div>loading...</div>
-    if (!Array.isArray(transactionList)) return <div>try again later</div>
+    if (errorTransactions) return <div>failed to load</div>
+    if (loadingTransactions) return <Loader />
+    if (!Array.isArray(dataTransactions)) return <div>try again later</div>
 
 
     return (
@@ -26,7 +27,7 @@ const TransactionsTable = ({accountId}) => {
                 </tr>
             </thead>
             <tbody>
-                {transactionList && transactionList.map(transaction => <TransactionRecord 
+                {dataTransactions && dataTransactions.map(transaction => <TransactionRecord 
                     key={transaction.transaction_id}
                     date={transaction.date}
                     amount={transaction.amount}
