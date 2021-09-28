@@ -1,8 +1,14 @@
-import BankBox from '../components/login/BankBox'
+import FullSiteCentered from '../components/FullSiteCentered'
+
+import BankBox from '../components/login/LoginPageButton'
 
 function Home() {
 
-    return (<div><BankBox /></div>)
+    return (
+        <FullSiteCentered>
+            <BankBox />
+        </FullSiteCentered>
+    )
 
 }
 

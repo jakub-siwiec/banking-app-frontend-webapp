@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react'
 
-import FullSiteCentered from '../FullSiteCentered'
 import LinkPlaid from './LinkPlaid'
 import Loader from '../loader/Loader'
 
-import useSWR from 'swr'
-
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+import swrRequest from '../../libs/swrRequest'
 
 
 function LoginPlaid() {
     const [linkToken, setLinkToken] = useState(null)
 
-    const { data: institution, error } = useSWR('/api/get-institution', fetcher)
+    const { data: institution, error } = swrRequest('/api/get-institution')
 
 
     const generateToken = async () => {
@@ -35,9 +32,7 @@ function LoginPlaid() {
     }, [institution])
 
     return (
-        <FullSiteCentered>
-            {linkToken != null ? <LinkPlaid linkToken={linkToken} /> : <Loader/>}
-        </FullSiteCentered>
+        linkToken != null ? <LinkPlaid linkToken={linkToken} /> : <Loader/>
     )
 }
 
