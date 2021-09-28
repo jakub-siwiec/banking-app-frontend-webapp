@@ -1,16 +1,13 @@
-import Navbar from '../components/Navbar'
+import DefaultLayout from '../components/DefaultLayout'
 
 import Accounts from '../components/accounts/Accounts'
 
 const accounts = () => {
 
     return (
-        <>
-            <Navbar />
-            <div className="section">
-                <Accounts />
-            </div>
-        </>
+        <DefaultLayout>
+            <Accounts />
+        </DefaultLayout>
     )
 }
 

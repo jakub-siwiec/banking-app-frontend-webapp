@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import Navbar from '../../components/Navbar'
+import DefaultLayout from '../../components/DefaultLayout'
 
 import TransactionsTable from '../../components/account/TransactionsTable'
 
@@ -13,8 +13,7 @@ const accountsId = () => {
 
 
     return (
-        <>
-            <Navbar />
+        <DefaultLayout>
             <div className="level">
                 <div className="level-item">
                     <BalanceBox accountId={accountId} />
@@ -25,7 +24,7 @@ const accountsId = () => {
                     <TransactionsTable accountId={accountId} />
                 </div>
             </div>
-        </>
+        </DefaultLayout>
     )
 }
 
