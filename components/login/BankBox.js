@@ -10,11 +10,11 @@ const BankBox = ({ institution }) => {
         <Link href='/accounts'>
             <div className="card">
                 <header className="card-header">
-                    <p class="card-header-title">
+                    <p className="card-header-title">
                         {institution.institution.name}
                     </p>
-                    <button class="card-header-icon">
-                        <span class="icon">
+                    <button className="card-header-icon">
+                        <span className="icon">
                             <FontAwesomeIcon icon={faAngleRight} />
                         </span>
                     </button>

@@ -2,13 +2,13 @@ import swrRequest from '../../libs/swrRequest'
 
 import Account from './Account'
 import LoaderSite from '../loader/LoaderSite'
+import ErrorItem from '../ErrorItem'
 
 const Accounts = () => {
 
     const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/get-accounts')
 
-
-    if (errorAccounts) return <div>failed to load</div>
+    if (errorAccounts) return <ErrorItem errorText={`${errorAccounts.status} ${errorAccounts.statusText}`} />
     if (loadingAccounts) return <LoaderSite />
 
     return (

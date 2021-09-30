@@ -2,6 +2,7 @@ import swrRequest from '../../libs/swrRequest'
 
 import TransactionRecord from './TransactionRecord'
 import Loader from '../loader/Loader'
+import ErrorItem from '../ErrorItem'
 
 
 const TransactionsTable = ({accountId}) => {
@@ -9,7 +10,7 @@ const TransactionsTable = ({accountId}) => {
     const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
 
 
-    if (errorTransactions) return <div>failed to load</div>
+    if (errorTransactions) return <ErrorItem errorText={`${errorTransactions.status} ${errorTransactions.statusText}`} />
     if (loadingTransactions) return <Loader />
     if (!Array.isArray(dataTransactions)) return <div>try again later</div>
 
