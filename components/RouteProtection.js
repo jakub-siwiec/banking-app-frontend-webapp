@@ -7,7 +7,7 @@ import LoaderSite from './loader/LoaderSite'
 
 const RouteProtection = ({children}) => {
     const authContext = useContext(AuthContext)
-    const { isAuthenticated, loadingAuthentication } = authContext    
+    const { isAuthenticated, loadingAuthentication } = authContext
 
     if (loadingAuthentication) return <LoaderSite />
     if (loadingAuthentication === false && isAuthenticated !== true) return <LoginPage />

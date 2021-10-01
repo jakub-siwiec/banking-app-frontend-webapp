@@ -4,6 +4,12 @@ import swrRequest from '../libs/swrRequest'
 
 import AuthContext from './AuthContext'
 
+// To refresh provider so that once logged out login pops in (isAuthenticated should be false and auth should be checked when changing the site)
+// To delete the token once logging out 
+// When token invalid should logout as well
+// Figure out what to do when product not ready
+// Figure out what with other errors https://plaid.com/docs/errors/
+
 const AuthContextProvider = ({ children }) => {
 
     const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })
@@ -11,6 +17,10 @@ const AuthContextProvider = ({ children }) => {
     const { data: dataAuth, loading: loadingAuth } = swrRequest('/api/auth')
 
     const checkAuth = () => {
+        console.log("dataAuth")
+        console.log(dataAuth)
+        console.log("loading")
+        console.log(loadingAuth)
         if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
             setAuth({ isAuthenticated: true, loadingAuthentication: loadingAuth })
         } else {
@@ -23,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
     }, [dataAuth, loadingAuth])
 
     return (
-        <AuthContext.Provider value={ auth }>
+        <AuthContext.Provider value={ { checkAuth, ...auth } }>
             {children}
         </AuthContext.Provider>
     )

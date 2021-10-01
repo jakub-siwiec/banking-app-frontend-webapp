@@ -1,22 +1,19 @@
 import useSWR from 'swr'
 
 export default function swrRequest(url) {
+    console.log("swrRequest")
     const fetcher = (...args) => fetch(...args).then(async res => {
-        if (res.status < 200 || res.status >= 300) {
-            const error = new Error(`There was an error: ${res.status} ${res.statusText}`)
-            error.info = await res.json()
-            error.status = res.status
-            error.statusText = res.statusText
+        const response = await res.json()
+        console.log(response)
+        if (response.status_code < 200 || response.status_code >= 300) {
+            const error = new Error(`There was an error: ${response.status_code} ${response.error_code}`)
+            error.info = response
+            error.status = response.status_code
+            error.statusText = response.error_code
+            console.log(error)
             throw error
         }
-        if (res.status_code < 200 || res.status_code >= 300) {
-            const error = new Error(`There was a Plaid error: ${res.status_code} ${res.error_code}`)
-            error.info = await res.json()
-            error.status = res.status_code
-            error.statusText = res.error_code
-            throw error
-        }
-        return res.json()
+        return response
     })
     const { data, error } = useSWR(url, fetcher)
 
