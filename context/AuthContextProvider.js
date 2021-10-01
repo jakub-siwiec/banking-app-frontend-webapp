@@ -11,8 +11,6 @@ const AuthContextProvider = ({ children }) => {
     const { data: dataAuth, loading: loadingAuth } = swrRequest('/api/auth')
 
     const checkAuth = () => {
-        console.log("loadingAuth in Provider")
-        console.log(loadingAuth)
         if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
             setAuth({ isAuthenticated: true, loadingAuthentication: loadingAuth })
         } else {
