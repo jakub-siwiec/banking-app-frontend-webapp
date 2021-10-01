@@ -1,12 +1,13 @@
 import FullSiteCentered from '../components/FullSiteCentered'
 
-import LoginPageButton from '../components/login/LoginPageButton'
+import BankBox from '../components/login/BankBox'
+
 
 function Home() {
 
     return (
         <FullSiteCentered>
-            <LoginPageButton />
+            <BankBox />
         </FullSiteCentered>
     )
 

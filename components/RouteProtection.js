@@ -1,34 +1,18 @@
-import { useContext, useEffect } from 'react'
-
-import { useRouter } from 'next/router'
+import { useContext } from 'react'
 
 import AuthContext from '../context/AuthContext'
 
+import LoginPage from './login/LoginPage'
+import LoaderSite from './loader/LoaderSite'
+
 const RouteProtection = ({children}) => {
-    const router = useRouter()
     const authContext = useContext(AuthContext)
-    const { isAuthenticated, loadingAuthentication } = authContext
+    const { isAuthenticated, loadingAuthentication } = authContext    
 
-
-    useEffect(() => {
-        console.log("router.isReady")
-        console.log(router.isReady)
-        console.log("router.pathname")
-        console.log(router.pathname)
-        console.log("loadingAuth")
-        console.log(loadingAuthentication)
-        console.log("auth")
-        console.log(isAuthenticated)
-        
-        // if (router.isReady && router.pathname !== '/' && loadingAuth === false && auth !== true) router.push('/')
-        if (router.isReady && router.pathname !== '/' && loadingAuthentication === false && isAuthenticated !== true) console.log("ROUTER_PUSH")
-
-    }, [router, loadingAuthentication, isAuthenticated])
-    
+    if (loadingAuthentication) return <LoaderSite />
+    if (loadingAuthentication === false && isAuthenticated !== true) return <LoginPage />
 
     return children
-
-    
 }
 
 export default RouteProtection
