@@ -9,6 +9,8 @@ const RouteProtection = ({children}) => {
     const authContext = useContext(AuthContext)
     const { isAuthenticated, loadingAuthentication } = authContext
 
+    console.log(authContext)
+
     if (loadingAuthentication) return <LoaderSite />
     if (loadingAuthentication === false && isAuthenticated !== true) return <LoginPage />
 

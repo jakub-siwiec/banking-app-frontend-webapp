@@ -4,7 +4,6 @@ export default function swrRequest(url) {
     console.log("swrRequest")
     const fetcher = (...args) => fetch(...args).then(async res => {
         const response = await res.json()
-        console.log(response)
         if (response.status_code < 200 || response.status_code >= 300) {
             const error = new Error(`There was an error: ${response.status_code} ${response.error_code}`)
             error.info = response

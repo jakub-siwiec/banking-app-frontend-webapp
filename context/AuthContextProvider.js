@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { useSWRConfig } from 'swr'
+
 import swrRequest from '../libs/swrRequest'
 
 import AuthContext from './AuthContext'
@@ -12,20 +14,26 @@ import AuthContext from './AuthContext'
 
 const AuthContextProvider = ({ children }) => {
 
+    const { mutate } = useSWRConfig()
+
     const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })
 
     const { data: dataAuth, loading: loadingAuth } = swrRequest('/api/auth')
 
-    const checkAuth = () => {
-        console.log("dataAuth")
-        console.log(dataAuth)
-        console.log("loading")
-        console.log(loadingAuth)
+    const checkAuth = async () => {
         if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
             setAuth({ isAuthenticated: true, loadingAuthentication: loadingAuth })
         } else {
             setAuth({ isAuthenticated: false, loadingAuthentication: loadingAuth })
         }
+        console.log("HAHAHAHA----")
+        console.log(auth)
+    }
+
+    const revalidateAuth = async () => {
+        console.log("Hi")
+        await mutate('/api/auth')
+        await checkAuth()
     }
 
     useEffect(() => {
@@ -33,7 +41,7 @@ const AuthContextProvider = ({ children }) => {
     }, [dataAuth, loadingAuth])
 
     return (
-        <AuthContext.Provider value={ { checkAuth, ...auth } }>
+        <AuthContext.Provider value={ { revalidateAuth, ...auth } }>
             {children}
         </AuthContext.Provider>
     )

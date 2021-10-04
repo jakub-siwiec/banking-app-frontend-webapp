@@ -1,10 +1,9 @@
-import { parseCookies } from 'nookies'
+import { parseCookies, destroyCookie } from 'nookies'
 
-export default async function cookiesRequest(req, res, address, method='GET') {
+export default async function cookiesRequest(req, res, address, method='GET', deleteCookie=false) {
     const cookies = parseCookies({req})
 
     if (cookies.accesstoken) {
-        console.log(cookies.accesstoken)
         const response = await fetch(address, {
             method: method,
             headers: {
@@ -12,6 +11,7 @@ export default async function cookiesRequest(req, res, address, method='GET') {
             },
         })
         const data = await response.json()
+        deleteCookie && destroyCookie({ res }, 'accesstoken')
         res.status(200).json(data)
     } else {
         res.status(401).json({
