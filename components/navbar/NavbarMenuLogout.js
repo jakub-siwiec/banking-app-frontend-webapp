@@ -10,11 +10,12 @@ import AuthContext from '../../context/AuthContext'
 const NavbarMenuLogout = () => {
     const router = useRouter()
     const authContext = useContext(AuthContext)
-    const { revalidateAuth } = authContext
+    const { checkAuth } = authContext
 
     const clickLogout = async (e) => {
-        await fetchRequest('/api/delete-access-token')
-        await revalidateAuth()
+        const logoutMessage = await fetchRequest('/api/delete-access-token')
+        console.log(logoutMessage)
+        await checkAuth()
         router.push('/')
     }
 

@@ -8,6 +8,7 @@ module.exports = {
           {
             type: 'cookie',
             key: 'accesstoken',
+            value: `*`
           },
         ],
         destination: '/',

@@ -1,9 +1,14 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 
 import { usePlaidLink } from 'react-plaid-link'
 
+import AuthContext from '../../context/AuthContext'
+
 
 const LinkPlaid = ({ linkToken }) => {
+    const authContext = useContext(AuthContext)
+    const { checkAuth } = authContext
+
     const onSuccess = useCallback( async (publicToken, metadata) => {
         const response = await fetch('api/access-token', {
             method: 'POST',
@@ -14,6 +19,7 @@ const LinkPlaid = ({ linkToken }) => {
             body: JSON.stringify({ publicToken: publicToken })
         })
         await response.json()
+        checkAuth()
     }, [])
 
     const config = {
