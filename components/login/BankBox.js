@@ -2,22 +2,20 @@ import Link from 'next/link'
 
 import swrRequest from '../../libs/swrRequest'
 
-import Loader from '../loader/Loader'
 import ErrorItem from '../ErrorItem'
+import Loader from '../loader/Loader'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 const BankBox = () => {
-
     const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/get-institution')
 
     if (errorInstitution && errorInstitution.status !== 401) return <ErrorItem errorStatus={errorInstitution.status} errorText={errorInstitution.statusText}/>
     if (loadingInstitution) return <Loader />
 
     const nameExists = dataInstitution && dataInstitution.institution
-
 
     return (
         <Link href='/accounts'>
@@ -36,5 +34,6 @@ const BankBox = () => {
         </Link>
     )
 }
+
 
 export default BankBox

@@ -1,12 +1,11 @@
 import swrRequest from '../../libs/swrRequest'
 
-import TransactionRecord from './TransactionRecord'
 import Loader from '../loader/Loader'
 import ErrorItem from '../ErrorItem'
+import TransactionRecord from './TransactionRecord'
 
 
 const TransactionsTable = ({accountId}) => {
-
     const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
 
     if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
@@ -39,5 +38,6 @@ const TransactionsTable = ({accountId}) => {
         </table>
     )
 }
+
 
 export default TransactionsTable

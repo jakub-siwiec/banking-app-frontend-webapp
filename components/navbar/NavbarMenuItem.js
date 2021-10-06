@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+
 const NavbarMenuItem = ({ url, name }) => {
     return (
         <Link href={url}>
@@ -7,7 +8,8 @@ const NavbarMenuItem = ({ url, name }) => {
                 {name}
             </a>
         </Link>
-)
+    )
 }
+
 
 export default NavbarMenuItem

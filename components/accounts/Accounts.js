@@ -1,11 +1,11 @@
 import swrRequest from '../../libs/swrRequest'
 
 import Account from './Account'
-import LoaderSite from '../loader/LoaderSite'
 import ErrorItem from '../ErrorItem'
+import LoaderSite from '../loader/LoaderSite'
+
 
 const Accounts = () => {
-
     const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/get-accounts')
 
     if (errorAccounts) return <ErrorItem errorStatus={errorAccounts.status} errorText={errorAccounts.statusText} />
@@ -30,5 +30,6 @@ const Accounts = () => {
         </div>
     )
 }
+
 
 export default Accounts

@@ -6,7 +6,6 @@ import AuthContext from './AuthContext'
 
 
 const AuthContextProvider = ({ children }) => {
-
     const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })    
 
     const checkAuth = async () => {
@@ -28,5 +27,6 @@ const AuthContextProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 }
+
 
 export default AuthContextProvider

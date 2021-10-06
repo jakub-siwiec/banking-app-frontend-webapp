@@ -13,8 +13,7 @@ const NavbarMenuLogout = () => {
     const { checkAuth } = authContext
 
     const clickLogout = async (e) => {
-        const logoutMessage = await fetchRequest('/api/delete-access-token')
-        console.log(logoutMessage)
+        await fetchRequest('/api/delete-access-token')
         await checkAuth()
         router.push('/')
     }
@@ -25,5 +24,6 @@ const NavbarMenuLogout = () => {
         </a>
     )
 }
+
 
 export default NavbarMenuLogout

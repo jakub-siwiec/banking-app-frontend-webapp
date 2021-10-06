@@ -1,6 +1,7 @@
 import FullSiteCentered from '../FullSiteCentered'
 import Loader from './Loader'
 
+
 const LoaderSite = () => {
     return (
         <FullSiteCentered>
@@ -8,5 +9,6 @@ const LoaderSite = () => {
         </FullSiteCentered>
     )
 }
+
 
 export default LoaderSite

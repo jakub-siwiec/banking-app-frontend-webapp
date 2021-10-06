@@ -1,5 +1,4 @@
 export default async function fetchRequest(address, method='GET') {
-
     const response = await fetch(address, {
         method: method,
         credentials: 'include'

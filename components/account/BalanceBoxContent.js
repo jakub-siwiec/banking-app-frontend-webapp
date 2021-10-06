@@ -1,5 +1,4 @@
 const BalanceBoxContent = ({ balanceAccounts }) => {
-    
     const { balances, name, official_name, subtype, type } = balanceAccounts
 
     const currentValue = ({ current, iso_currency_code }) => current.toString() + " " + iso_currency_code.toString()
@@ -25,5 +24,6 @@ const BalanceBoxContent = ({ balanceAccounts }) => {
         </div>
     )
 }
+
 
 export default BalanceBoxContent

@@ -1,6 +1,6 @@
+import Accounts from '../components/accounts/Accounts'
 import DefaultLayout from '../components/DefaultLayout'
 
-import Accounts from '../components/accounts/Accounts'
 
 const accounts = () => {
 
@@ -10,5 +10,6 @@ const accounts = () => {
         </DefaultLayout>
     )
 }
+
 
 export default accounts

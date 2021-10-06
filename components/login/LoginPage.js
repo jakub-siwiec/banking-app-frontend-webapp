@@ -1,6 +1,7 @@
 import FullSiteCentered from '../FullSiteCentered'
 import LoginPlaid from './LoginPlaid'
 
+
 const LoginPage = () => {
     return (
         <FullSiteCentered>
@@ -8,5 +9,6 @@ const LoginPage = () => {
         </FullSiteCentered>
     )
 }
+
 
 export default LoginPage

@@ -1,5 +1,6 @@
 import { parseCookies, destroyCookie } from 'nookies'
 
+
 export default async function cookiesRequest(req, res, address, method='GET', deleteCookie=false) {
     const cookies = parseCookies({req})
 
@@ -19,5 +20,4 @@ export default async function cookiesRequest(req, res, address, method='GET', de
             error_code: "NO_ACCESS_TOKEN"
         })
     }
-
 }  

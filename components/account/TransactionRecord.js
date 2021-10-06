@@ -11,4 +11,5 @@ const TransactionRecord = ({date, amount, currency, name, categories, transactio
     )
 }
 
+
 export default TransactionRecord

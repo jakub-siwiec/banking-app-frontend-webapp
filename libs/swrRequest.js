@@ -1,11 +1,7 @@
 import useSWR from 'swr'
 
-import { useRouter } from 'next/router'
 
 export default function swrRequest(url) {
-    const router = useRouter()
-
-    console.log("swrRequest")
     const fetcher = (...args) => fetch(...args).then(async res => {
         const response = await res.json()
         if (response.status_code < 200 || response.status_code >= 300) {
@@ -13,7 +9,6 @@ export default function swrRequest(url) {
             error.info = response
             error.status = response.status_code
             error.statusText = response.error_code
-            console.log(error)
             throw error
         }
         return response

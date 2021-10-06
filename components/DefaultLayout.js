@@ -1,7 +1,7 @@
 import Navbar from './Navbar'
 
-const DefaultLayout = ({ children }) => {
 
+const DefaultLayout = ({ children }) => {
     return (
         <>
             <Navbar />
@@ -11,5 +11,6 @@ const DefaultLayout = ({ children }) => {
         </>
     )
 }
+
 
 export default DefaultLayout

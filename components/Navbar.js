@@ -6,7 +6,6 @@ import NavbarMenuLogout from './navbar/NavbarMenuLogout'
 
 
 const Navbar = () => {
-
     const [burgerActive, setBurger] = useState(false)
 
     const burgerToggle = () => {
@@ -44,5 +43,6 @@ const Navbar = () => {
         </nav>
     )
 }
+
 
 export default Navbar

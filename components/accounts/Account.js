@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+
 const Account = ({ name, id, official_name, type, subtype, available_balance, current_balance, currency, limit }) => {
     const accountLink = "/accounts/" + id
     
@@ -26,5 +27,6 @@ const Account = ({ name, id, official_name, type, subtype, available_balance, cu
         </div>
     )
 }
+
 
 export default Account

@@ -1,16 +1,13 @@
 import { useRouter } from 'next/router'
 
-import DefaultLayout from '../../components/DefaultLayout'
-
-import TransactionsTable from '../../components/account/TransactionsTable'
-
 import BalanceBox from '../../components/account/BalanceBox'
+import DefaultLayout from '../../components/DefaultLayout'
+import TransactionsTable from '../../components/account/TransactionsTable'
 
 
 const accountsId = () => {
     const router = useRouter()
     const { accountId } = router.query
-
 
     return (
         <DefaultLayout>
@@ -27,5 +24,6 @@ const accountsId = () => {
         </DefaultLayout>
     )
 }
+
 
 export default accountsId

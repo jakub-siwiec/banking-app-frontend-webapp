@@ -1,6 +1,5 @@
-import FullSiteCentered from '../components/FullSiteCentered'
-
 import BankBox from '../components/login/BankBox'
+import FullSiteCentered from '../components/FullSiteCentered'
 
 
 function Home() {
@@ -12,5 +11,6 @@ function Home() {
     )
 
 }
+
 
 export default Home

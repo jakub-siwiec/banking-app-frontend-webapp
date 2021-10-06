@@ -36,4 +36,5 @@ const LinkPlaid = ({ linkToken }) => {
     )
 }
 
+
 export default LinkPlaid
