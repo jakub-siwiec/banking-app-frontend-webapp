@@ -13,7 +13,7 @@ const BankBox = () => {
 
     const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/get-institution')
 
-    if (errorInstitution && errorInstitution.status !== 401) return <ErrorItem errorText={`${errorInstitution.status} ${errorInstitution.statusText}`}/>
+    if (errorInstitution && errorInstitution.status !== 401) return <ErrorItem errorStatus={errorInstitution.status} errorText={errorInstitution.statusText}/>
     if (loadingInstitution) return <Loader />
 
     const nameExists = dataInstitution && dataInstitution.institution

@@ -1,6 +1,10 @@
 import useSWR from 'swr'
 
+import { useRouter } from 'next/router'
+
 export default function swrRequest(url) {
+    const router = useRouter()
+
     console.log("swrRequest")
     const fetcher = (...args) => fetch(...args).then(async res => {
         const response = await res.json()

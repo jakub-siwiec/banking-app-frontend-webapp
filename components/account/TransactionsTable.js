@@ -9,11 +9,8 @@ const TransactionsTable = ({accountId}) => {
 
     const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
 
-
-    if (errorTransactions) return <ErrorItem errorText={`${errorTransactions.status} ${errorTransactions.statusText}`} />
+    if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
     if (loadingTransactions) return <Loader />
-    if (!Array.isArray(dataTransactions)) return <div>try again later</div>
-
 
     return (
         <table className="table">

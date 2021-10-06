@@ -8,7 +8,7 @@ const Accounts = () => {
 
     const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/get-accounts')
 
-    if (errorAccounts) return <ErrorItem errorText={`${errorAccounts.status} ${errorAccounts.statusText}`} />
+    if (errorAccounts) return <ErrorItem errorStatus={errorAccounts.status} errorText={errorAccounts.statusText} />
     if (loadingAccounts) return <LoaderSite />
 
     return (

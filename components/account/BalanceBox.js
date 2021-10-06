@@ -10,7 +10,7 @@ const BalanceBox = ({ accountId }) => {
 
     const { data: dataBalance, error: errorBalance, loading: loadingBalance } = swrRequest(`/api/balance/${accountId}`)
 
-    if (errorBalance) return <ErrorItem errorText={`${errorBalance.status} ${errorBalance.statusText}`} />
+    if (errorBalance) return <ErrorItem errorStatus={errorBalance.status} errorText={errorBalance.statusText} />
     if (loadingBalance) return <Loader />
     if (typeof(dataBalance.name) !== 'undefined' && dataBalance.name === 'PlaidError') return <div>{dataBalance.error_code}: {dataBalance.error_message}</div>
 

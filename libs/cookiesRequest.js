@@ -16,7 +16,7 @@ export default async function cookiesRequest(req, res, address, method='GET', de
     } else {
         res.status(401).json({
             status_code: 401,
-            error_code: "No token received"
+            error_code: "NO_ACCESS_TOKEN"
         })
     }
 
