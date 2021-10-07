@@ -1,3 +1,4 @@
+import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
 
 import BalanceBoxContent from './BalanceBoxContent'
@@ -13,7 +14,7 @@ const BalanceBox = ({ accountId }) => {
 
     return (
         <div className="box">
-            { dataBalance.accounts[0].balances && <BalanceBoxContent balanceAccounts={dataBalance.accounts[0]} />}
+            { nestedObjectCheck(dataBalance, 'accounts[0].balances') && <BalanceBoxContent balanceAccounts={dataBalance.accounts[0]} />}
         </div>
     )
 }

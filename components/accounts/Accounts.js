@@ -1,3 +1,4 @@
+import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
 
 import Account from './Account'
@@ -13,7 +14,7 @@ const Accounts = () => {
 
     return (
         <div className="columns is-multiline is-variable">
-                {dataAccounts.accounts && dataAccounts.accounts.map(account => 
+                {nestedObjectCheck(dataAccounts, 'accounts') && dataAccounts.accounts.map(account => 
                     <Account 
                         key={account.account_id}
                         id={account.account_id} 
@@ -21,10 +22,10 @@ const Accounts = () => {
                         official_name={account.official_name} 
                         type={account.type}
                         subtype={account.subtype}
-                        available_balance={account.balances.available}
-                        current_balance={account.balances.current}
-                        currency={account.balances.iso_currency_code}
-                        limit={account.balances.limit}
+                        available_balance={nestedObjectCheck(account, 'balances.available') ? account.balances.available : null}
+                        current_balance={nestedObjectCheck(account, 'balances.current') ? account.balances.current : null}
+                        currency={nestedObjectCheck(account, 'balances.iso_currency_code') ? account.balances.iso_currency_code : null}
+                        limit={nestedObjectCheck(account, 'balances.limit') ? account.balances.limit : null}
                     />
                 )}
         </div>

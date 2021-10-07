@@ -7,8 +7,8 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 import AuthContextProvider from '../context/AuthContextProvider'
 import RouteProtection from '../components/RouteProtection'
 
-function MyApp({ Component, pageProps }) {
 
+function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
       <RouteProtection>
@@ -17,5 +17,6 @@ function MyApp({ Component, pageProps }) {
     </AuthContextProvider>
   )
 }
+
 
 export default MyApp

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
 
 import ErrorItem from '../ErrorItem'
@@ -9,20 +10,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
+
 const BankBox = () => {
     const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/get-institution')
 
     if (errorInstitution && errorInstitution.status !== 401) return <ErrorItem errorStatus={errorInstitution.status} errorText={errorInstitution.statusText}/>
     if (loadingInstitution) return <Loader />
 
-    const nameExists = dataInstitution && dataInstitution.institution
-
     return (
         <Link href='/accounts'>
             <div className="card">
                 <header className="card-header">
                     <p className="card-header-title">
-                        {nameExists && dataInstitution.institution.name}
+                        {nestedObjectCheck(dataInstitution, 'institution.name') && dataInstitution.institution.name}
                     </p>
                     <button className="card-header-icon">
                         <span className="icon">
