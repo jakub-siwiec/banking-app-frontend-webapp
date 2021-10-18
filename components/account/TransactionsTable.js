@@ -1,3 +1,4 @@
+import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
 
 import Loader from '../loader/Loader'
@@ -10,6 +11,8 @@ const TransactionsTable = ({accountId}) => {
 
     if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
     if (loadingTransactions) return <Loader />
+
+    console.log(dataTransactions)
 
     return (
         <table className="table">
@@ -24,7 +27,7 @@ const TransactionsTable = ({accountId}) => {
                 </tr>
             </thead>
             <tbody>
-                {dataTransactions && dataTransactions.map(transaction => <TransactionRecord 
+                {nestedObjectCheck(dataTransactions, 'transactions[0]') && dataTransactions.transactions.map(transaction => <TransactionRecord 
                     key={transaction.transaction_id}
                     date={transaction.date}
                     amount={transaction.amount}

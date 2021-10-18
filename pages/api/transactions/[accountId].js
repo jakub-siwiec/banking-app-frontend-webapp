@@ -7,6 +7,6 @@ export default async function handler(req, res) {
     await cookiesRequest(
         req,
         res,
-        `http://localhost:8002/transactions/${accountId}`
+        `http://localhost:8002/transactions/${accountId}?startDate=2018-11-09&endDate=2021-09-07`
     )
 }  
