@@ -1,7 +1,9 @@
+import withHttpOnlyCookie from '../../../middleware/withHttpOnlyCookie'
+
 import cookiesRequest from '../../../libs/cookiesRequest'
 
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
     const { accountId } = req.query
 
     await cookiesRequest(
@@ -10,3 +12,5 @@ export default async function handler(req, res) {
         `http://localhost:8002/balance/${accountId}`
     )
 }  
+
+export default withHttpOnlyCookie(handler)

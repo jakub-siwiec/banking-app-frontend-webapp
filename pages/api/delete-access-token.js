@@ -1,7 +1,9 @@
+import withHttpOnlyCookie from '../../middleware/withHttpOnlyCookie'
+
 import cookiesRequest from '../../libs/cookiesRequest'
 
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
     await cookiesRequest(
         req,
         res,
@@ -9,4 +11,7 @@ export default async function handler(req, res) {
         'DELETE',
         true
     )
-}  
+}    
+
+
+export default withHttpOnlyCookie(handler)

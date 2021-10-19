@@ -4,10 +4,11 @@ export default async function fetchRequest(address, method='GET', credentials='i
         credentials: credentials
     })
 
+    const status = response.status
     const data = await response.json()
     
     return {
         ...data, 
-        status_code: response.status
+        status_code: status
     }
 }  

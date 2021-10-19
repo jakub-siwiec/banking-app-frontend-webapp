@@ -1,24 +1,18 @@
-import { parseCookies, destroyCookie } from 'nookies'
+import destroyAccessToken from './destroyAccessToken'
 
+// The role of cookies request would change from checking cookies to just a fetch request with bearer token
+// If we use middleware
 
 export default async function cookiesRequest(req, res, address, method='GET', deleteCookie=false) {
-    const cookies = parseCookies({req})
 
-    if (cookies.accesstoken) {
-        const response = await fetch(address, {
-            method: method,
-            headers: {
-                'Authorization': 'Bearer ' + cookies.accesstoken,
-            },
-        })
-        const status = await response.status
-        const data = await response.json()
-        deleteCookie && destroyCookie({ res }, 'accesstoken')
-        res.status(status ? status : 500).json(data)
-    } else {
-        res.status(401).json({
-            status_code: 401,
-            error_code: "NO_ACCESS_TOKEN"
-        })
-    }
+    const response = await fetch(address, {
+        method: method,
+        headers: {
+            'Authorization': res.locals.bearerToken,
+        },
+    })
+    const status = await response.status
+    const data = await response.json()
+    deleteCookie && destroyAccessToken(res)
+    res.status(status ? status : 500).json(data)
 }  
