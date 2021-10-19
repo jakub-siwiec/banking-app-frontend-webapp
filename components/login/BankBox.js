@@ -18,7 +18,7 @@ const BankBox = () => {
     if (loadingInstitution) return <Loader />
 
     return (
-        <Link href='/accounts'>
+        <Link href='/accounts' passHref>
             <div className="card">
                 <header className="card-header">
                     <p className="card-header-title">

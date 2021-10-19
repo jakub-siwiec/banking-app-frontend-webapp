@@ -6,10 +6,12 @@ import AuthContext from './AuthContext'
 
 
 const AuthContextProvider = ({ children }) => {
-    const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })    
+    const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })  
+    console.log("context")  
 
     const checkAuth = async () => {
         const dataAuth = await fetchRequest('/api/auth')
+        console.log(dataAuth)
         if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
             setAuth({ isAuthenticated: true, loadingAuthentication: false })
         } else {
@@ -18,6 +20,7 @@ const AuthContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        console.log("context useeffect")
         checkAuth()
     }, [])
 
