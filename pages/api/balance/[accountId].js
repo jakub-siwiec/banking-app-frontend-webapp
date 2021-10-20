@@ -1,12 +1,12 @@
 import withHttpOnlyCookie from '../../../middleware/withHttpOnlyCookie'
 
-import cookiesRequest from '../../../libs/cookiesRequest'
+import backendRequest from '../../../libs/backendRequest'
 
 
 const handler = async (req, res) => {
     const { accountId } = req.query
 
-    await cookiesRequest(
+    await backendRequest(
         req,
         res,
         `http://localhost:8002/balance/${accountId}`

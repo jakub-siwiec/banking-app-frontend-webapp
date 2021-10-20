@@ -3,6 +3,8 @@ import { useContext } from 'react'
 import { useRouter } from 'next/router'
 
 import fetchRequest from '../../libs/fetchRequest'
+import apiRequest from '../../libs/apiRequest'
+
 
 import AuthContext from '../../context/AuthContext'
 
@@ -13,7 +15,7 @@ const NavbarMenuLogout = () => {
     const { checkAuth } = authContext
 
     const clickLogout = async (e) => {
-        await fetchRequest('/api/delete-access-token')
+        await apiRequest('/api/delete-access-token')
         await checkAuth()
         router.push('/')
     }

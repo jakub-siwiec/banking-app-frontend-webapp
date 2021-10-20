@@ -1,11 +1,14 @@
-export default async function fetchRequestWithAuth(address, method='GET') {
-    const response = await fetch(address, config)
+import fetchRequest from './fetchRequest'
 
-    const status = response.status
-    const data = await response.json()
-    
-    return {
-        ...data, 
-        status_code: status
-    }
+
+export default async function fetchRequestWithAuth(address, method='GET', bearerToken) {
+    console.log("fetchRequestWithAuth")
+    const response = await fetchRequest(address, {
+        method: method,
+        headers: {
+            'Authorization': bearerToken,
+        },
+    })
+
+    return response
 }  

@@ -4,21 +4,16 @@ import { usePlaidLink } from 'react-plaid-link'
 
 import AuthContext from '../../context/AuthContext'
 
+import apiRequest from '../../libs/apiRequest'
+
+
 
 const LinkPlaid = ({ linkToken }) => {
     const authContext = useContext(AuthContext)
     const { checkAuth } = authContext
 
     const onSuccess = useCallback( async (publicToken, metadata) => {
-        const response = await fetch('api/access-token', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ publicToken: publicToken })
-        })
-        await response.json()
+        const response = await apiRequest('api/access-token', { publicToken: publicToken })
         checkAuth()
     }, [])
 

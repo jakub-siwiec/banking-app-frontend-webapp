@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import fetchRequest from '../libs/fetchRequest'
+import apiRequest from '../libs/apiRequest'
 
 import AuthContext from './AuthContext'
 
@@ -10,7 +10,8 @@ const AuthContextProvider = ({ children }) => {
     console.log("context")  
 
     const checkAuth = async () => {
-        const dataAuth = await fetchRequest('/api/auth')
+        console.log("checkAuth")
+        const dataAuth = await apiRequest('/api/auth')
         console.log(dataAuth)
         if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
             setAuth({ isAuthenticated: true, loadingAuthentication: false })

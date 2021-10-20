@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
+import apiRequest from '../../libs/apiRequest'
+
 
 import BalanceBoxContent from './BalanceBoxContent'
 import ErrorItem from '../ErrorItem'
@@ -12,7 +14,7 @@ const BalanceBox = () => {
     const router = useRouter()
     const { accountId } = router.query
 
-    const { data: dataBalance, error: errorBalance, loading: loadingBalance } = swrRequest(`/api/balance/${accountId}`)
+    const { data: dataBalance, error: errorBalance, loading: loadingBalance } = apiRequest(`/api/balance/${accountId}`)
 
     if (errorBalance) return <ErrorItem errorStatus={errorBalance.status} errorText={errorBalance.statusText} />
     if (loadingBalance) return <Loader />

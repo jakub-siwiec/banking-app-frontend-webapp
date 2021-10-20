@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
+import apiRequest from '../../libs/apiRequest'
 
 import Loader from '../loader/Loader'
 import ErrorItem from '../ErrorItem'
@@ -12,7 +13,7 @@ const TransactionsTable = () => {
     const router = useRouter()
     const { accountId } = router.query
 
-    const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
+    const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = apiRequest(`/api/transactions/${accountId}`)
 
     if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
     if (loadingTransactions) return <Loader />
