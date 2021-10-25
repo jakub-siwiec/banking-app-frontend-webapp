@@ -1,6 +1,6 @@
 import withHttpOnlyCookie from '../../../middleware/withHttpOnlyCookie'
 
-import backendRequest from '../../../libs/backendRequest'
+import backendRequest from '../../../libs/requests/backendRequest'
 
 
 const handler = async (req, res) => {

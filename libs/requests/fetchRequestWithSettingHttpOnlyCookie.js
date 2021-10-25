@@ -1,5 +1,5 @@
 import fetchRequest from './fetchRequest'
-import addAccessToken from './addAccessToken'
+import addAccessToken from '../accessToken/addAccessToken'
 
 
 export default async function fetchRequestWithSettingHttpOnlyCookie(res, address, publicToken) {
@@ -12,7 +12,7 @@ export default async function fetchRequestWithSettingHttpOnlyCookie(res, address
         body: JSON.stringify({ publicToken: publicToken })
     }) 
 
-    addAccessToken(res, response.data.access_token)
+    addAccessToken(res, response.access_token)
 
     return response
 }  

@@ -1,14 +1,10 @@
 import fetchRequest from './fetchRequest'
 
-import nestedObjectCheck from './nestedObjectCheck'
+import nestedObjectCheck from '../nestedObjectCheck'
 
 
 const apiRequest = async (address, values) => {
     let response;
-
-    console.log("apiRequest")
-    console.log(address)
-    console.log(values)
 
     if (address === '/api/auth') {
         response = await fetchRequest(address, {
@@ -40,10 +36,6 @@ const apiRequest = async (address, values) => {
     } else {
         return false
     }
-
-    console.log("after ifs apiRequest")
-    console.log(address)
-    console.log(response)
 
     return response
 }

@@ -2,9 +2,7 @@ import { useContext } from 'react'
 
 import { useRouter } from 'next/router'
 
-import fetchRequest from '../../libs/fetchRequest'
-import apiRequest from '../../libs/apiRequest'
-
+import apiRequest from '../../libs/requests/apiRequest'
 
 import AuthContext from '../../context/AuthContext'
 

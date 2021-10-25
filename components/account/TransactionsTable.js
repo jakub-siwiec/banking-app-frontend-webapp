@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
-import swrRequest from '../../libs/swrRequest'
+import swrRequest from '../../libs/requests/swrRequest'
 
 import Loader from '../loader/Loader'
 import ErrorItem from '../ErrorItem'
@@ -16,8 +16,6 @@ const TransactionsTable = () => {
 
     if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
     if (loadingTransactions) return <Loader />
-
-    console.log(dataTransactions)
 
     return (
         <table className="table">

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import fetchRequest from '../../libs/fetchRequest'
-
-import apiRequest from '../../libs/apiRequest'
+import apiRequest from '../../libs/requests/apiRequest'
 
 import LinkPlaid from './LinkPlaid'
 import Loader from '../loader/Loader'
@@ -13,9 +11,7 @@ function LoginPlaid() {
 
     const generateToken = async () => {
         try {
-            console.log("Hello, it's me")
             const linkTokenData = await apiRequest('/api/link-token')
-            console.log(linkTokenData)
             setLinkToken(linkTokenData.link_token)
         } catch (error) {
             setLinkToken(null)

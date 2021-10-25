@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
-import swrRequest from '../../libs/swrRequest'
+import swrRequest from '../../libs/requests/swrRequest'
 
 import BalanceBoxContent from './BalanceBoxContent'
 import ErrorItem from '../ErrorItem'

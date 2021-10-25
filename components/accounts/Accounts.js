@@ -1,5 +1,5 @@
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
-import swrRequest from '../../libs/swrRequest'
+import swrRequest from '../../libs/requests/swrRequest'
 
 import Account from './Account'
 import ErrorItem from '../ErrorItem'

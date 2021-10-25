@@ -4,7 +4,7 @@ import { usePlaidLink } from 'react-plaid-link'
 
 import AuthContext from '../../context/AuthContext'
 
-import apiRequest from '../../libs/apiRequest'
+import apiRequest from '../../libs/requests/apiRequest'
 
 
 

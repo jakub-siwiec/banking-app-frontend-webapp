@@ -3,7 +3,7 @@ import fetchRequestWithAuth from './fetchRequestWithAuth'
 import fetchRequestWithSettingHttpOnlyCookie from './fetchRequestWithSettingHttpOnlyCookie'
 import fetchRequestWithDeleteToken from './fetchRequestWithDeleteToken'
 
-import nestedObjectCheck from './nestedObjectCheck'
+import nestedObjectCheck from '../nestedObjectCheck'
 
 
 const backendRequest = async (req, res, address, method='GET') => {
@@ -38,10 +38,6 @@ const backendRequest = async (req, res, address, method='GET') => {
     } else {
         return false
     }
-
-    console.log("after ifs backendrequest")
-    console.log(address)
-    console.log(response)
 
     res.status(response.status_code ? response.status_code : 500).json(response)
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
-import swrRequest from '../../libs/swrRequest'
+import swrRequest from '../../libs/requests/swrRequest'
 
 import ErrorItem from '../ErrorItem'
 import Loader from '../loader/Loader'
