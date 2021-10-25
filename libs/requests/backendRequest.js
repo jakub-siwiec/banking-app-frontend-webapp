@@ -31,9 +31,9 @@ const backendRequest = async (req, res, address, method='GET') => {
         response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
     } else if (address === 'http://localhost:8002/accounts') {
         response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address.startsWith('http://localhost:8002/balance/')) {
+    } else if (address.startsWith('http://localhost:8002/balance')) {
         response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address.startsWith('http://localhost:8002/transactions/')) {
+    } else if (address.startsWith('http://localhost:8002/transactions')) {
         response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
     } else {
         return false
