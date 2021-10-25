@@ -1,6 +1,5 @@
 import nestedObjectCheck from '../../libs/nestedObjectCheck'
 import swrRequest from '../../libs/swrRequest'
-import apiRequest from '../../libs/apiRequest'
 
 import Account from './Account'
 import ErrorItem from '../ErrorItem'
@@ -8,7 +7,7 @@ import LoaderSite from '../loader/LoaderSite'
 
 
 const Accounts = () => {
-    const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = apiRequest('/api/get-accounts')
+    const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/get-accounts')
 
     if (errorAccounts) return <ErrorItem errorStatus={errorAccounts.status} errorText={errorAccounts.statusText} />
     if (loadingAccounts) return <LoaderSite />

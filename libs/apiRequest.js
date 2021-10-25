@@ -1,5 +1,4 @@
 import fetchRequest from './fetchRequest'
-import swrRequest from './swrRequest'
 
 import nestedObjectCheck from './nestedObjectCheck'
 
@@ -38,14 +37,6 @@ const apiRequest = async (address, values) => {
             method: 'GET',
             credentials: 'include'
         })
-    } else if (address === '/api/get-institution') {
-        response = swrRequest(address)
-    } else if (address === '/api/get-accounts') {
-        response = swrRequest(address)
-    } else if (address.startsWith('/api/balance/')) {
-        response = swrRequest(address)
-    } else if (address.startsWith('/api/transactions/')) {
-        response = swrRequest(address)
     } else {
         return false
     }
