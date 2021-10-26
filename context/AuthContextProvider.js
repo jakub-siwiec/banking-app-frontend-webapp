@@ -9,11 +9,16 @@ const AuthContextProvider = ({ children }) => {
     const [auth, setAuth] = useState({ isAuthenticated: false, loadingAuthentication: true })  
 
     const checkAuth = async () => {
-        const dataAuth = await apiRequest('/api/auth')
-        if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
-            setAuth({ isAuthenticated: true, loadingAuthentication: false })
-        } else {
+        try {
+            const dataAuth = await apiRequest('/api/auth')
+            if (dataAuth && dataAuth.status_code >= 200 && dataAuth.status_code < 300) {
+                setAuth({ isAuthenticated: true, loadingAuthentication: false })
+            } else {
+                setAuth({ isAuthenticated: false, loadingAuthentication: false })
+            }
+        } catch (err) {
             setAuth({ isAuthenticated: false, loadingAuthentication: false })
+            console.error(err)
         }
     }
 
