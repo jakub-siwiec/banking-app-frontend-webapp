@@ -3,45 +3,58 @@ import fetchRequestWithAuth from './fetchRequestWithAuth'
 import fetchRequestWithSettingHttpOnlyCookie from './fetchRequestWithSettingHttpOnlyCookie'
 import fetchRequestWithDeleteToken from './fetchRequestWithDeleteToken'
 
+import generateErrorObject from './generateErrorObject'
 import nestedObjectCheck from '../nestedObjectCheck'
 
 
 const backendRequest = async (req, res, address, method='GET') => {
-    let response;
+    try {
+        let response;
 
-    if (address === 'http://localhost:8002') {
-        response = await fetchRequest(address, {
-            method: 'GET'
-        })
-    } else if (address === 'http://localhost:8002/access-token') {
-        if (method === 'GET') {
-            if (nestedObjectCheck(req, 'body.publicToken')) {
-                response = await fetchRequestWithSettingHttpOnlyCookie(res, address, req.body.publicToken)
+        const wrongMethodError = () => generateErrorObject(405, 'Method not allowed')
+
+        if (address === 'http://localhost:8002') {
+            if (method === 'GET') {
+                response = await fetchRequest(address, {
+                    method: method
+                })
             } else {
-                return false
-            }    
-        } else if (method === 'DELETE') {
-            response = await fetchRequestWithDeleteToken(res, address, 'GET', res.locals.bearerToken)
+                throw wrongMethodError()
+            }
+        } else if (address === 'http://localhost:8002/access-token') {
+            if (method === 'GET') {
+                if (nestedObjectCheck(req, 'body.publicToken')) {
+                    response = await fetchRequestWithSettingHttpOnlyCookie(res, address, req.body.publicToken)
+                } else {
+                    throw generateErrorObject(400, 'No public token included')
+                }    
+            } else if (method === 'DELETE') {
+                response = await fetchRequestWithDeleteToken(res, address, method, res.locals.bearerToken)
+            } else {
+                throw wrongMethodError()
+            }
+        } else if (
+            address === 'http://localhost:8002/auth'
+            || address === 'http://localhost:8002/institution'
+            || address === 'http://localhost:8002/accounts'
+            || address.startsWith('http://localhost:8002/balance')
+            || address.startsWith('http://localhost:8002/transactions')
+        ) {
+            if (method === 'GET') {
+                response = await fetchRequestWithAuth(address, method, res.locals.bearerToken)
+            } else {
+                throw wrongMethodError()            
+            }
         } else {
-            return false
+            throw generateErrorObject(404, 'No backend endpoint available')
         }
-    } else if (address === 'http://localhost:8002/auth') {
-        response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address === 'http://localhost:8002/institution') {
-        response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address === 'http://localhost:8002/accounts') {
-        response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address.startsWith('http://localhost:8002/balance')) {
-        response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else if (address.startsWith('http://localhost:8002/transactions')) {
-        response = await fetchRequestWithAuth(address, 'GET', res.locals.bearerToken)
-    } else {
-        return false
+    
+        if (!response.status_code || response.status_code >= 400) throw response
+    
+        res.status(response.status_code).json(response)
+    } catch (err) {
+        throw err
     }
-
-    if (!response.status_code || response.status_code >= 400) throw response
-
-    res.status(response.status_code).json(response)
 }
 
 
