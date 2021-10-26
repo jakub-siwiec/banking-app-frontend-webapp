@@ -39,7 +39,9 @@ const backendRequest = async (req, res, address, method='GET') => {
         return false
     }
 
-    res.status(response.status_code ? response.status_code : 500).json(response)
+    if (!response.status_code || response.status_code >= 400) throw response
+
+    res.status(response.status_code).json(response)
 }
 
 

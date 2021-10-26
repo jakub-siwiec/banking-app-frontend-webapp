@@ -1,3 +1,4 @@
+import withApiErrorHandler from '../../middleware/withApiErrorHandler'
 import withHttpOnlyCookie from '../../middleware/withHttpOnlyCookie'
 
 import backendRequest from '../../libs/requests/backendRequest'
@@ -12,4 +13,4 @@ const handler = async (req, res) => {
 }    
 
 
-export default withHttpOnlyCookie(handler)
+export default withApiErrorHandler(withHttpOnlyCookie(handler))
