@@ -13,7 +13,7 @@ const NavbarMenuLogout = () => {
     const { checkAuth } = authContext
 
     const clickLogout = async (e) => {
-        await apiRequest('/api/delete-access-token')
+        await apiRequest('/api/logout')
         await checkAuth()
         router.push('/')
     }

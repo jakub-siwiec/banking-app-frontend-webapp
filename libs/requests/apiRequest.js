@@ -11,11 +11,11 @@ const apiRequest = async (address, values) => {
             method: 'GET',
             credentials: 'include'
         })
-    } else if (address === '/api/link-token') {
+    } else if (address === '/api/link') {
         response = await fetchRequest(address, {
             method: 'GET'
         })
-    } else if (address === 'api/access-token') {
+    } else if (address === 'api/login') {
         if (nestedObjectCheck(values, 'publicToken')) {
             response = await fetchRequest(address, {
                 method: 'POST',
@@ -28,7 +28,7 @@ const apiRequest = async (address, values) => {
         } else {
             return false
         }
-    } else if (address === '/api/delete-access-token') {
+    } else if (address === '/api/logout') {
         response = await fetchRequest(address, {
             method: 'GET',
             credentials: 'include'

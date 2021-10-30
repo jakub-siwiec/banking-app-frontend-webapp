@@ -12,7 +12,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const BankBox = () => {
-    const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/get-institution')
+    const { data: dataInstitution, error: errorInstitution, loading: loadingInstitution } = swrRequest('/api/institution')
 
     if (errorInstitution && errorInstitution.status !== 401) return <ErrorItem errorStatus={errorInstitution.status} errorText={errorInstitution.statusText}/>
     if (loadingInstitution) return <Loader />

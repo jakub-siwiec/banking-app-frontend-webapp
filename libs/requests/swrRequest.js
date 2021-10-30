@@ -1,4 +1,3 @@
-import { startsWith } from 'lodash'
 import useSWR from 'swr'
 
 
@@ -7,7 +6,6 @@ export default function swrRequest(url) {
         const response = await res.json()
         if (!res.ok) {
             const error = new Error(`There was an error: ${response.status_code} ${response.message}`)
-            error.info = response
             error.status = response.status_code
             error.message = response.message
             error.code = response.code
@@ -15,6 +13,8 @@ export default function swrRequest(url) {
             throw error
         }
         return response
+    }).catch(error => {
+        throw error
     })
 
     const { data, error } = useSWR(url, fetcher)

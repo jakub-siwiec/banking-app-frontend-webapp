@@ -13,7 +13,7 @@ const LinkPlaid = ({ linkToken }) => {
     const { checkAuth } = authContext
 
     const onSuccess = useCallback( async (publicToken, metadata) => {
-        const response = await apiRequest('api/access-token', { publicToken: publicToken })
+        const response = await apiRequest('api/login', { publicToken: publicToken })
         checkAuth()
     }, [])
 

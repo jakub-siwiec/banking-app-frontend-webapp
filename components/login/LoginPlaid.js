@@ -17,7 +17,7 @@ function LoginPlaid() {
     const generateToken = async () => {
         try {
             setLinkTokenLoading(true)
-            const linkTokenData = await apiRequest('/api/link-token')
+            const linkTokenData = await apiRequest('/api/link')
             if (
                 linkTokenData.status_code >= 200 
                 && linkTokenData.status_code < 300 
