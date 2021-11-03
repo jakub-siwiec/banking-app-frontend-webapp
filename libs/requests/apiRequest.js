@@ -26,7 +26,7 @@ const apiRequest = async (address, values) => {
                 body: JSON.stringify({ publicToken: values.publicToken })
             })
         } else {
-            return false
+            throw new Error('No public token')
         }
     } else if (address === '/api/logout') {
         response = await fetchRequest(address, {
@@ -34,7 +34,7 @@ const apiRequest = async (address, values) => {
             credentials: 'include'
         })
     } else {
-        return false
+        throw new Error('Wrong method or URL')
     }
 
     return response

@@ -10,7 +10,13 @@ import nestedObjectCheck from '../nestedObjectCheck'
 const backendRequest = async (req, res, address, method='GET') => {
     let response;
 
-    const wrongMethodError = () => generateErrorObject(405, 'Method not allowed')
+    const wrongMethodError = () => generateErrorObject({
+        statusCode: 405, 
+        message: 'Method not allowed', 
+        name: 'TypeError',
+        code: 'ERR_METHOD_NOT_ALLOWED',
+        type: 'MethodNotAllowed'
+    })
 
     if (address === 'http://localhost:8002') {
         if (method === 'GET') {
@@ -45,7 +51,13 @@ const backendRequest = async (req, res, address, method='GET') => {
             throw wrongMethodError()            
         }
     } else {
-        throw generateErrorObject(404, 'No backend endpoint available')
+        throw generateErrorObject({
+            statusCode: 404, 
+            message: 'No backend endpoint available', 
+            name: 'NOT_FOUND',
+            code: 'ERR_INVALID_REQUEST',
+            type: 'NotFound'
+        })
     }
 
     if (!response.status_code || response.status_code >= 400) throw response
