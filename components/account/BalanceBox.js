@@ -14,7 +14,7 @@ const BalanceBox = () => {
 
     const { data: dataBalance, error: errorBalance, loading: loadingBalance } = swrRequest(`/api/balance/${accountId}`)
 
-    if (errorBalance) return <ErrorItem errorStatus={errorBalance.status} errorText={errorBalance.statusText} />
+    if (errorBalance) return <ErrorItem error={errorBalance} />
     if (loadingBalance) return <Loader />
 
     return (

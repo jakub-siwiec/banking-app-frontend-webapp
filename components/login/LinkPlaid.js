@@ -7,14 +7,17 @@ import AuthContext from '../../context/AuthContext'
 import apiRequest from '../../libs/requests/apiRequest'
 
 
-
 const LinkPlaid = ({ linkToken }) => {
     const authContext = useContext(AuthContext)
     const { checkAuth } = authContext
 
     const onSuccess = useCallback( async (publicToken, metadata) => {
-        const response = await apiRequest('api/login', { publicToken: publicToken })
-        checkAuth()
+        try {
+            const response = await apiRequest('api/login', { publicToken: publicToken })
+            checkAuth()    
+        } catch (err) {
+            console.error(err)
+        }
     }, [])
 
     const config = {

@@ -6,7 +6,7 @@ export default function swrRequest(url) {
         const response = await res.json()
         if (!res.ok) {
             const error = new Error(`There was an error: ${response.status_code} ${response.message}`)
-            error.status = response.status_code
+            error.status_code = response.status_code
             error.message = response.message
             error.code = response.code
             error.type = response.type

@@ -1,5 +1,6 @@
 import fetchRequest from './fetchRequest'
 
+import generateErrorObject from '../generateErrorObject'
 import nestedObjectCheck from '../nestedObjectCheck'
 
 
@@ -26,15 +27,27 @@ const apiRequest = async (address, values) => {
                 body: JSON.stringify({ publicToken: values.publicToken })
             })
         } else {
-            throw new Error('No public token')
-        }
+            throw generateErrorObject({
+                statusCode: 400, 
+                message: 'No public token', 
+                name: 'BadRequest',
+                code: 'ERR_NO_PUBLIC_TOKEN',
+                type: 'BadRequest'
+            })
+            }
     } else if (address === '/api/logout') {
         response = await fetchRequest(address, {
             method: 'GET',
             credentials: 'include'
         })
     } else {
-        throw new Error('Wrong method or URL')
+        throw generateErrorObject({
+            statusCode: 404, 
+            message: 'No backend endpoint available', 
+            name: 'BadRequest',
+            code: 'ERR_BAD_REQUEST',
+            type: 'BadRequest'
+        })
     }
 
     return response

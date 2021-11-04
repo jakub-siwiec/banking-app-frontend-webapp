@@ -9,7 +9,7 @@ import LoaderSite from '../loader/LoaderSite'
 const Accounts = () => {
     const { data: dataAccounts, error: errorAccounts, loading: loadingAccounts } = swrRequest('/api/accounts')
 
-    if (errorAccounts) return <ErrorItem errorStatus={errorAccounts.status} errorText={errorAccounts.statusText} />
+    if (errorAccounts) return <ErrorItem error={errorAccounts} />
     if (loadingAccounts) return <LoaderSite />
 
     return (

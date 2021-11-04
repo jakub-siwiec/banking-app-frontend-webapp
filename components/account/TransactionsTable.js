@@ -14,11 +14,9 @@ const TransactionsTable = () => {
 
     const { data: dataTransactions, error: errorTransactions, loading: loadingTransactions } = swrRequest(`/api/transactions/${accountId}`)
 
-    if (
-        loadingTransactions 
-        || (errorTransactions && errorTransactions.code === 'PRODUCT_NOT_READY')
-    ) return <Loader />
-    if (errorTransactions) return <ErrorItem errorStatus={errorTransactions.status} errorText={errorTransactions.statusText} address={`/api/transactions/${accountId}`} />
+    if (loadingTransactions) return <Loader />
+    if (errorTransactions) return <ErrorItem error={errorTransactions} address={`/api/transactions/${accountId}`} />
+
 
     return (
         <table className="table">

@@ -1,25 +1,22 @@
 import { useRouter } from 'next/router'
 
-import { useSWRConfig } from 'swr'
-
 import Loader from './loader/Loader'
 
 
-const ErrorItem = ({ errorStatus, errorText, address=null }) => {
+const ErrorItem = ({ error, address=null }) => {
     const router = useRouter()
-    const { mutate } = useSWRConfig()
+    const { status_code, code, message } = error
 
-    errorText === 'NO_ACCESS_TOKEN' && router.reload()
-    errorText === 'INVALID_ACCESS_TOKEN' && router.reload()
+    code === 'NO_ACCESS_TOKEN' && router.reload()
+    code === 'INVALID_ACCESS_TOKEN' && router.reload()
 
-    if (errorText === 'PRODUCT_NOT_READY') { 
-        mutate(address)
-        return <Loader />
-    }
+    if (code === 'PRODUCT_NOT_READY') return <Loader />
+
+    console.error(`${status_code}: ${message}`)
 
     return (
         <div>
-            {errorStatus} {errorText}
+            {status_code}: {message}
         </div>
     )
 }
